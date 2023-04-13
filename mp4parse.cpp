@@ -3,46 +3,44 @@
 
 int main(int argc, char *argv[])
 {
-  if (argc != 2)
+  if (argc < 2)
   {
-    std::cerr << "Usage: " << argv[0] << " input.mp4" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " <input_file.mp4>" << std::endl;
     return 1;
   }
 
-  const char *input_filename = argv[1];
-
-  // Initialize GPAC
-  gf_sys_init(GF_MemTrackerNone, NULL);
-
-  // Open MP4 file
-  GF_ISOFile *file = gf_isom_open(input_filename, GF_ISOM_OPEN_READ, nullptr);
+  GF_ISOFile *file = gf_isom_open(argv[1], GF_ISOM_OPEN_READ, 0);
   if (!file)
   {
-    std::cerr << "Failed to open input file: " << input_filename << std::endl;
     return 1;
   }
 
-  // Get the number of tracks
   u32 track_count = gf_isom_get_track_count(file);
-  std::cout << "Number of tracks: " << track_count << std::endl;
+  std::cout << "Total tracks: " << track_count << std::endl;
 
-  // Iterate over tracks
   for (u32 i = 0; i < track_count; i++)
   {
     u32 track_id = gf_isom_get_track_id(file, i + 1);
     u32 media_type = gf_isom_get_media_type(file, i + 1);
-    u64 duration = gf_isom_get_media_duration(file, i + 1);
+    const char *media_type_name = gf_4cc_to_str(media_type);
 
-    std::cout << "Track " << i + 1 << " (ID: " << track_id << "):" << std::endl;
-    std::cout << "  Media type: " << gf_4cc_to_str(media_type) << std::endl;
-    std::cout << "  Duration: " << duration << std::endl;
+    std::cout << "Track " << i + 1 << " - ID: " << track_id << ", Type: " << media_type_name << std::endl;
+
+    if (media_type == GF_ISOM_MEDIA_VISUAL)
+    {
+      u32 codec = gf_isom_get_media_subtype(file, i + 1, 1);
+      const char *codec_name = gf_4cc_to_str(codec);
+
+      std::cout << "  Codec: " << codec_name << std::endl;
+
+      if (codec == GF_ISOM_SUBTYPE_VVC1 || codec == GF_ISOM_SUBTYPE_VVI1)
+      {
+        std::cout << "  VVC codec detected." << std::endl;
+        // VVC codec 처리 코드를 여기에 추가하세요.
+      }
+    }
   }
 
-  // Close MP4 file
   gf_isom_close(file);
-
-  // Shutdown GPAC
-  gf_sys_close();
-
   return 0;
 }
