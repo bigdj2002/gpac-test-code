@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
       if (codec == GF_ISOM_SUBTYPE_VVC1 || codec == GF_ISOM_SUBTYPE_VVI1)
       {
         std::cout << "  VVC codec detected." << std::endl;
-        // VVC codec 처리 코드를 여기에 추가하세요.
       }
     }
   }
