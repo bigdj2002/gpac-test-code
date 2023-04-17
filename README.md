@@ -1,4 +1,4 @@
-# mpeg-parser
+# parser library
 Project Goals: 
 
 1. MPEG-2 TS parser / MPEG-4 MP4 parser
