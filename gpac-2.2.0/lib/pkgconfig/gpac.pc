@@ -1,0 +1,12 @@
+prefix=/usr/local/gpac/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}//usr/local/gpac/build/lib
+includedir=${exec_prefix}/include
+
+Name: gpac
+Description: GPAC Multimedia Framework
+URL: http://gpac.io
+Version:2.2
+Cflags: -I${prefix}/include
+Libs: -L${libdir} -lgpac
+Libs.private: -lgpac_static  -lm -L/usr/local/gpac/build/lib -lGL -lGLU -lX11 -lz -lssl -lcrypto -lz  -lssl -lcrypto -ljpeg  -lpng16 -lz -lmad -la52 -lxvidcore -lpthread -lfaad -lavcodec -lavformat -lswscale -lavdevice -lavutil -lavfilter -logg -lvorbis -ltheora -logg   -lpthread -llzma
