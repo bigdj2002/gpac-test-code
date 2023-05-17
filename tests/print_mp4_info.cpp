@@ -26,13 +26,11 @@ void print_media_info(const char *input_file)
   {
     u32 track_id = gf_isom_get_track_id(input_isom, i + 1);
     u32 media_type = gf_isom_get_media_type(input_isom, i + 1);
+    u32 media_subtype = gf_isom_get_media_subtype(input_isom, i + 1, 1);
     u64 duration = gf_isom_get_media_duration(input_isom, i + 1);
     u32 timescale = gf_isom_get_media_timescale(input_isom, i + 1);
-    u32 codec = gf_isom_get_media_subtype(input_isom, i + 1, 1);
-    const char *codec_name = gf_4cc_to_str(codec);
     u32 width = 0;
     u32 height = 0;
-
     if (media_type == GF_ISOM_MEDIA_VISUAL)
     {
       gf_isom_get_visual_info(input_isom, i + 1, 1, &width, &height);
@@ -41,7 +39,7 @@ void print_media_info(const char *input_file)
     printf("Track %u:\n", i + 1);
     printf("  Track ID: %u\n", track_id);
     printf("  Media type: %s\n", gf_4cc_to_str(media_type));
-    std::cout << "  Codec: " << codec_name << std::endl;
+    printf("  Media subtype: %s\n", gf_4cc_to_str(media_subtype));
     printf("  Duration: %" PRIu64 " (%.2f seconds)\n", duration, (double)duration / timescale);
     if (width && height)
     {
