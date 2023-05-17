@@ -4,13 +4,12 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/../build/bin/program",
+        "program": "${workspaceFolder}/../build/bin/mp4parse",
         "args": [
-            // "/usr/local/hera/videos/output/Euro_Soccer-Yuv-1920x1080-420-8bit.mp4"
-            "/usr/local/hera/videos/vvenc/vvenc-test.mp4"
+            "videos/clip-avatar.mp4"
         ],
         "stopAtEntry": false,
-        "cwd": "${fileDirname}",
+        "cwd": "${workspaceFolder}",
         "environment": [],
         "externalConsole": false,
         "MIMode": "gdb",
