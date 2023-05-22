@@ -1,6 +1,6 @@
 #include "print_mp4_info.h"
 
-void print_media_info(const char *input_file)
+static void print_media_info(const char *input_file)
 {
   GF_ISOFile *input_isom = NULL;
   GF_Err err = GF_OK;

@@ -4,7 +4,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/../build/bin/mp4parse",
+        "program": "${workspaceFolder}/../build/bin/print_mp4_info",
         "args": [
             "videos/clip-avatar.mp4"
         ],

@@ -3,4 +3,4 @@
 #include <gpac/isomedia.h>
 #include <gpac/media_tools.h>
 
-void print_media_info(const char *input_file);
+static void print_media_info(const char *input_file);
